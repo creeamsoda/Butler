@@ -21,7 +21,31 @@
             "nextDate": "2025-1-1",
             "time": "23:20",
             "nextEpisode": "5",
-            "inNextReleased": false,
+            "isNextReleased": false,
+            "isNextLast": false
+        },
+        {
+            "name": "TestTree",
+            "nextDate": "2025-7-6",
+            "time": "00:00",
+            "nextEpisode": "6",
+            "isNextReleased": false,
+            "isNextLast": false
+        },
+        {
+            "name": "TestFour",
+            "nextDate": "2025-7-7",
+            "time": "05:05",
+            "nextEpisode": "0",
+            "isNextReleased": false,
+            "isNextLast": false
+        },
+        {
+            "name": "TestFive",
+            "nextDate": "2025-7-6",
+            "time": "15:30",
+            "nextEpisode": "0",
+            "isNextReleased": false,
             "isNextLast": false
         }
     ]

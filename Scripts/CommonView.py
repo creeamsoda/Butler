@@ -13,11 +13,12 @@ class NumberEntry():
 		self.suggestTextVariable = tk.StringVar()
 		self.suggestMessage = tk.Message(self.entryFrame, textvariable=self.suggestTextVariable)
 		self.suggestMessage.grid(row=1, columnspan=2)
-		self.validateCommand = (self.entry.register(self.CheckNumber))
-		self.entry.configure(validate='focusout', validatecommand=self.validateCommand)
+		self.validateCommand = (self.entry.register(self.CheckNumber), "%P")
+		self.entry.configure(validate='all', validatecommand=self.validateCommand)
 
-	def CheckNumber(self):
-		entryString = self.entry.get()
+	def CheckNumber(self, entryString):
+		#入力変更を許可した場合の文字列が引数としてPに渡される
+		entryString = entryString
 		result = CD.CheckNumber(entryString)
 		if result == CD.CheckNumberResult.Valid:
 			self.suggestTextVariable.set("有効な入力です")
@@ -38,8 +39,12 @@ class NumberEntry():
 		else:
 			return False
 
-	def get(self):
+	def Get(self):
 		return self.entry.get()
+
+	def DeleteAll(self):
+		self.entry.delete(0, tk.END)
+		self.suggestTextVariable.set("")
 
 class TimeEntry():
 	def __init__(self, frame, EntryGrid):
@@ -57,12 +62,12 @@ class TimeEntry():
 		self.suggestTextVariable = tk.StringVar()
 		self.suggestMessage = tk.Message(self.timeEntryFrame, textvariable=self.suggestTextVariable)
 		self.suggestMessage.grid(row=2, columnspan=2)
-		self.hourValidateCommand = (self.hourEntry.register(self.CheckHourEntry))
+		self.hourValidateCommand = (self.hourEntry.register(self.CheckHourEntry), "%P")
 		self.hourEntry.configure(validate='all', validatecommand=self.hourValidateCommand)
-		self.minuteValidateCommand = (self.minuteEntry.register(self.CheckMinuteEntry))
+		self.minuteValidateCommand = (self.minuteEntry.register(self.CheckMinuteEntry), "%P")
 		self.minuteEntry.configure(validate='all', validatecommand=self.minuteValidateCommand)
 
-	def get(self):
+	def Get(self):
 		"""
 		時と分を取得する。
 		時は2桁、分は2桁の数字で入力すること。
@@ -82,15 +87,20 @@ class TimeEntry():
 			return True
 		return False
 
-	def CheckHourEntry(self):
-		entryString = self.hourEntry.get()
+	def DeleteAll(self):
+		self.hourEntry.delete(0, tk.END)
+		self.minuteEntry.delete(0, tk.END)
+		self.suggestTextVariable.set("")
+
+	def CheckHourEntry(self, entryString):
+		entryString = entryString
 		result = CD.CheckHour(entryString)
 		self.checkTimeResults[0] = result
 		self.CheckTimeResultsAndShowSuggestMessage()
 		return True
 
-	def CheckMinuteEntry(self):
-		entryString = self.minuteEntry.get()
+	def CheckMinuteEntry(self, entryString):
+		entryString = entryString
 		result = CD.CheckMinute(entryString)
 		self.checkTimeResults[1] = result
 		self.CheckTimeResultsAndShowSuggestMessage()
@@ -135,14 +145,14 @@ class DateEntry():
 		self.suggestMessage.grid(row=2, columnspan=3)
 
 		#self.validateCommand = (self.entry.register(self.CheckAndModifyEntry), '%d', '%i', '%P', '%s', '%S', '%v', '%V')
-		self.yearValidateCommand = (self.yearEntry.register(self.CheckYearEntry))
+		self.yearValidateCommand = (self.yearEntry.register(self.CheckYearEntry), "%P")
 		self.yearEntry.configure(validate='all', validatecommand=self.yearValidateCommand)
-		self.monthValidateCommand = (self.monthEntry.register(self.CheckMonthEntry))
+		self.monthValidateCommand = (self.monthEntry.register(self.CheckMonthEntry), "%P")
 		self.monthEntry.configure(validate='all', validatecommand=self.monthValidateCommand)
-		self.dayValidateCommand = (self.dayEntry.register(self.CheckDayEntry))
+		self.dayValidateCommand = (self.dayEntry.register(self.CheckDayEntry), "%P")
 		self.dayEntry.configure(validate='all', validatecommand=self.dayValidateCommand)
 
-	def get(self):
+	def Get(self):
 		"""
 		年、月、日の順に取得する。
 		年は4桁、月と日は2桁の数字で入力すること。
@@ -160,6 +170,12 @@ class DateEntry():
 			dayString = dayString.zfill(2)
 
 		return f"{self.yearEntry.get()}-{self.monthEntry.get()}-{self.dayEntry.get()}"
+
+	def DeleteAll(self):
+		self.yearEntry.delete(0, tk.END)
+		self.monthEntry.delete(0, tk.END)
+		self.dayEntry.delete(0, tk.END)
+		self.suggestTextVariable.set("")
 		
 
 	"""
@@ -184,24 +200,24 @@ class DateEntry():
 		'forced' means the textvariable was changed.
 
 	"""
-	def CheckYearEntry(self):
-		entryString = self.yearEntry.get()
+	def CheckYearEntry(self, entryString):
+		entryString = entryString
 		result = CD.CheckYear(entryString)
 		self.checkResults[0] = result
 		self.CheckDateResultsAndShowSuggestMessage()
 		#validatecommandは入力を受け付けるかどうかを返す必要があるため、とりあえずTrueを返す
 		return True
 
-	def CheckMonthEntry(self):
-		entryString = self.monthEntry.get()
+	def CheckMonthEntry(self, entryString):
+		entryString = entryString
 		result = CD.CheckMonth(entryString)
 		self.checkResults[1] = result
 		self.CheckDateResultsAndShowSuggestMessage()
 		#validatecommandは入力を受け付けるかどうかを返す必要があるため、とりあえずTrueを返す
 		return True
 
-	def CheckDayEntry(self):
-		entryString = self.dayEntry.get()
+	def CheckDayEntry(self, entryString):
+		entryString = entryString
 		result = CD.CheckDay(entryString)
 		self.checkResults[2] = result
 		self.CheckDateResultsAndShowSuggestMessage()

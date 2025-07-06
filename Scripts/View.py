@@ -16,6 +16,9 @@ class View:
 
         self.onShowRegisterWindowButtonClickCallback = []
         self.onRegisterButtonClickCallback = []
+        self.onButtonLeftClickCallback = []
+        self.onButtonRightClickCallback = []
+
 
     def run(self):
         self.window.mainloop()
@@ -23,19 +26,19 @@ class View:
     def getAllEntry(self):
         return {
             "name": self.nameEntry.get(),
-            "nextEpisode": self.nextEpisodeEntry.get(),
-            "nextDate": self.nextReleaseDateEntry.get(),
-            "time": self.timeEntry.get()
+            "nextEpisode": self.nextEpisodeEntry.Get(),
+            "nextDate": self.nextReleaseDateEntry.Get(),
+            "time": self.timeEntry.Get()
         }
 
     def isAllEntryValid(self):
         if not self.nameEntry.get():
             return False
-        elif not self.nextEpisodeEntry.get():
+        elif not self.nextEpisodeEntry.Get():
             return False
-        elif not self.nextReleaseDateEntry.get():
+        elif not self.nextReleaseDateEntry.Get():
             return False
-        elif not self.timeEntry.get():
+        elif not self.timeEntry.Get():
             return False
         elif not self.nextEpisodeEntry.IsValid():
             return False
@@ -46,8 +49,19 @@ class View:
         return True
 
     def InitBasicWindow(self):
-        self.ShowButtlerMessageBox()
+        self.DrawButler((0, 0))
+        self.butlerMessage = tk.StringVar()
+        self.butlerMessageBox = tk.Message(self.basicFrame, textvariable=self.butlerMessage)
+        self.butlerMessageBox.grid(row=1, column=0, columnspan=2)
+
+        self.buttonLeftText = tk.StringVar()
+        self.butttonLeft = tk.Button(self.basicFrame, textvariable=self.buttonLeftText, command=self.OnButtonLeftClick, state="disabled")
+        self.butttonLeft.grid(row=2, column=0)
+        self.buttonRightText = tk.StringVar()
+        self.buttonRight = tk.Button(self.basicFrame, textvariable=self.buttonRightText, command=self.OnButtonRightClick, state="disabled")
+        self.buttonRight.grid(row=2, column=1)
         self.ShowShowRegisterWindowButton()
+
 
     def InitRegisterWindow(self):
         self.testRegisterMessage = tk.Message(self.registerFrame, text="登録画面は未実装")
@@ -79,24 +93,29 @@ class View:
         self.registerFailLabel = tk.Label(self.registerFrame, text="適切に各項目を入力してください", state="disabled")
         self.registerFailLabel.grid(row=6, column=0, columnspan=3)
 
+    def ClearRegisterWindow(self):
+        self.nameEntry.delete(0, tk.END)
+        self.nextEpisodeEntry.DeleteAll()
+        self.nextReleaseDateEntry.DeleteAll()
+        self.timeEntry.DeleteAll()
+        self.ShowRegisterFailLabel(False)
+
     def ShowBasicWindow(self):
         self.basicFrame.tkraise()
 
     def ShowRegisterWindow(self):
         self.registerFrame.tkraise()
 
-    def DrawButler(self):
-        print("drawButlerは未実装")
-        #self.canvas = tk.Canvas(self.window, width=320, height=320, bd=0, )
+    def DrawButler(self, grid):
+        self.canvas = tk.Canvas(self.basicFrame, width=320, height=320, bd=0)
+        self.canvas.grid(row=grid[0], column=grid[1], columnspan=2, sticky="nsew")
+        self.butlerImage = tk.PhotoImage(file=r".\images\butler.png")  # 画像ファイルのパスを指定
+        self.canvas.create_image(0, 0, image=self.butlerImage, anchor="nw")
 
     def ShowShowRegisterWindowButton(self):
         registerButton = tk.Button(self.basicFrame, text="登録", command=self.OnShowRegisterWindowButtonClick)
         registerButton.grid(row=0, column=2)
 
-    def ShowButtlerMessageBox(self):
-        self.butlerMessage = tk.StringVar()
-        self.butlerMessageBox = tk.Message(self.basicFrame, textvariable=self.butlerMessage)
-        self.butlerMessageBox.grid(row=1, column=0, columnspan=2)
 
     def ShowMessageOneByOne(self, message, cancel, startCount=0, hasSetOnCancel=False):
         if cancel.canceled == True:
@@ -136,4 +155,12 @@ class View:
 
     def OnShowRegisterWindowButtonClick(self):
         for callback in self.onShowRegisterWindowButtonClickCallback:
+            callback()
+
+    def OnButtonLeftClick(self):
+        for callback in self.onButtonLeftClickCallback:
+            callback()
+
+    def OnButtonRightClick(self):
+        for callback in self.onButtonRightClickCallback:
             callback()

@@ -20,6 +20,7 @@ def RegisterFromEntry():
     saveData.Data["animes"].append(newData)
     saveData.WriteSaveData(saveData.Data)
     print("登録完了")
+    window.ClearRegisterWindow()
     window.ShowBasicWindow()
 
 if __name__ == "__main__":
