@@ -34,3 +34,6 @@ class SaveData():
             print("Save data written successfully.")
         except IOError as e:
             print(f"Error writing to save data file: {e}")
+
+    def CreateAnimeData(self, entryData):
+        return {"name":entryData["name"], "nextDate":entryData["nextDate"], "time":entryData["time"], "nextEpisode":entryData["nextEpisode"], "inNextReleased":False, "isNextLast":False}

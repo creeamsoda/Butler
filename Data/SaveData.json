@@ -1,4 +1,4 @@
-﻿{
+{
     "animes": [
         {
             "name": "a",
@@ -6,6 +6,22 @@
             "time": "00:00",
             "nextEpisode": "1",
             "isNextReleased": false,
+            "isNextLast": false
+        },
+        {
+            "name": "test",
+            "nextEpisode": "2",
+            "nextDate": "2025-7-2",
+            "time": "00:00",
+            "isNextReleased": false,
+            "isNextLast": false
+        },
+        {
+            "name": "testTwo",
+            "nextDate": "2025-1-1",
+            "time": "23:20",
+            "nextEpisode": "5",
+            "inNextReleased": false,
             "isNextLast": false
         }
     ]
