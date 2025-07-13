@@ -28,6 +28,8 @@ jobs:
           # 必要なパッケージインストール・・・②
           pip install slack_sdk
           pip install pathlib
+      - name: lsCommand
+        run: ls -a | ls ./ -a
           
       - name: Run script
         run: |
