@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # 定期実行する時間・・・①
-    - cron: '0 22 * * *'
+    - cron: '0 6 * * *'
     
 jobs:
   build:
@@ -28,14 +28,6 @@ jobs:
           # 必要なパッケージインストール・・・②
           pip install slack_sdk
           pip install pathlib
-      - name: pwd
-        run: pwd
-      - name: lsCommand
-        run: ls -a
-      - name: lsCommandInData
-        run: cd ../
-      - name: ls
-        run: ls ../ -a
           
       - name: Run script
         run: |
