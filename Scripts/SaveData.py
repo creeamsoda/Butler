@@ -2,7 +2,7 @@
 from pathlib import Path
 import Common
 
-SAVE_DATA_FILE_PATH = Path(r".\Data\SaveData.json")
+SAVE_DATA_FILE_PATH = Path(r"./Data/SaveData.json")
 
 class SaveData():
     #インスタンス作成時にデータを読み込む

@@ -1,7 +1,7 @@
 ﻿import json
 from pathlib import Path
 
-SAVE_DATA_FILE_PATH = Path(r".\Data\BotData.json")
+SAVE_DATA_FILE_PATH = Path(r"./Data/BotData.json")
 
 class BotDataManager:
     #インスタンス作成時にデータを読み込む
