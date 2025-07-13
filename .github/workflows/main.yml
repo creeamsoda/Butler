@@ -16,7 +16,7 @@ jobs:
 
     # 実行する処理＆コマンド指定
     steps:
-      - uses: actions/checkout@4
+      - uses: actions/checkout@v4
       - name: Set up Python 3.13
         uses: actions/setup-python@v5
         with:
