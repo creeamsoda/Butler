@@ -27,6 +27,7 @@ jobs:
           python -m pip install --upgrade pip
           # 必要なパッケージインストール・・・②
           pip install slack_sdk
+          pip install pathlib
           
       - name: Run script
         run: |
