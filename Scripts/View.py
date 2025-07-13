@@ -116,6 +116,14 @@ class View:
         registerButton = tk.Button(self.basicFrame, text="登録", command=self.OnShowRegisterWindowButtonClick)
         registerButton.grid(row=0, column=2)
 
+    def ActivateLeftRightButtons(self, isActivate):
+        if isActivate:
+            self.butttonLeft.configure(state="normal")
+            self.buttonRight.configure(state="normal")
+        else:
+            self.butttonLeft.configure(state="disabled")
+            self.buttonRight.configure(state="disabled")
+
 
     def ShowMessageOneByOne(self, message, cancel, startCount=0, hasSetOnCancel=False):
         if cancel.canceled == True:
@@ -126,15 +134,17 @@ class View:
 
         if len(message.message) <= startCount:
             self.SetMessageComplete(message)
+            print("end onebyone")
             return
 
         self.ShowText(message.message[:startCount+1])
 
-        afterId = self.window.after(int(message.period*1000), self.ShowMessageOneByOne, message, cancel, startCount+1)
+        afterId = self.window.after(int(message.period*1000), self.ShowMessageOneByOne, message, cancel, startCount+1, True)
         cancel.setId(self.window, afterId)
 
     def SetMessageComplete(self, message):
         self.ShowText(message.message)
+        message.isCompleted = True
 
     def ShowText(self, text):
         self.butlerMessage.set(text)
@@ -159,8 +169,8 @@ class View:
 
     def OnButtonLeftClick(self):
         for callback in self.onButtonLeftClickCallback:
-            callback()
+            callback[0](*callback[1:])
 
     def OnButtonRightClick(self):
         for callback in self.onButtonRightClickCallback:
-            callback()
+            callback[0](*callback[1:])

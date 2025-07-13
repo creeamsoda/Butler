@@ -6,3 +6,8 @@
 
     def ShowButtons(self, frame, gird):
         return None
+
+    def OnButtonLeftClick(self, saveData):
+        return None
+    def OnButtonRightClick(self, saveData):
+        return None

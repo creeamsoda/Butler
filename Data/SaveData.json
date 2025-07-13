@@ -1,42 +1,42 @@
-{
+﻿{
     "animes": [
         {
             "name": "a",
-            "nextDate": "2025-06-24",
+            "nextDate": "2025-8-8",
             "time": "00:00",
-            "nextEpisode": "1",
+            "nextEpisode": "3",
             "isNextReleased": false,
             "isNextLast": false
         },
         {
             "name": "test",
-            "nextEpisode": "2",
-            "nextDate": "2025-7-2",
+            "nextEpisode": "3",
+            "nextDate": "2025-8-9",
             "time": "00:00",
             "isNextReleased": false,
             "isNextLast": false
         },
         {
             "name": "testTwo",
-            "nextDate": "2025-1-1",
+            "nextDate": "2025-2-5",
             "time": "23:20",
-            "nextEpisode": "5",
+            "nextEpisode": "10",
             "isNextReleased": false,
             "isNextLast": false
         },
         {
             "name": "TestTree",
-            "nextDate": "2025-7-6",
+            "nextDate": "2025-8-13",
             "time": "00:00",
-            "nextEpisode": "6",
+            "nextEpisode": "7",
             "isNextReleased": false,
             "isNextLast": false
         },
         {
             "name": "TestFour",
-            "nextDate": "2025-7-7",
+            "nextDate": "2025-7-28",
             "time": "05:05",
-            "nextEpisode": "0",
+            "nextEpisode": "3",
             "isNextReleased": false,
             "isNextLast": false
         },
@@ -45,6 +45,22 @@
             "nextDate": "2025-7-6",
             "time": "15:30",
             "nextEpisode": "0",
+            "isNextReleased": false,
+            "isNextLast": false
+        },
+        {
+            "name": "Demon Slayer",
+            "nextDate": "2025-7-14",
+            "time": "23:59",
+            "nextEpisode": "2",
+            "isNextReleased": false,
+            "isNextLast": false
+        },
+        {
+            "name": "アニメ2",
+            "nextDate": "2025-7-11",
+            "time": "23:59",
+            "nextEpisode": "1",
             "isNextReleased": false,
             "isNextLast": false
         }

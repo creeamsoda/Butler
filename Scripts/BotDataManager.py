@@ -1,9 +1,8 @@
 ﻿import json
-import Common
 
-SAVE_DATA_FILE_PATH = r".\Data\SaveData.json"
+SAVE_DATA_FILE_PATH = r".\Data\BotData.json"
 
-class SaveData():
+class BotDataManager:
     #インスタンス作成時にデータを読み込む
     def __init__(self):
         self.Data = self.ReadSaveData()
@@ -14,7 +13,6 @@ class SaveData():
         try:
             saveDataFile = open(SAVE_DATA_FILE_PATH, mode="r", encoding="utf-8_sig")
             saveData = json.load(saveDataFile)
-            animes = saveData["animes"]
             saveDataFile.close()
             return saveData
 
@@ -35,15 +33,3 @@ class SaveData():
             print("Save data written successfully.")
         except IOError as e:
             print(f"Error writing to save data file: {e}")
-
-    def CreateAnimeData(self, entryData):
-        return {"name":entryData["name"], "nextDate":entryData["nextDate"], "time":entryData["time"], "nextEpisode":entryData["nextEpisode"], "isNextReleased":False, "isNextLast":False}
-
-    def SetWatched(self, name):
-        for anime in self.Data["animes"]:
-            if anime["name"] == name:
-                anime["nextDate"] = Common.GetOneWeekLaterDate(anime["nextDate"])
-                anime["nextEpisode"] = str(int(anime["nextEpisode"]) + 1)
-                anime["isNextReleased"] = False
-                break
-        self.WriteSaveData(self.Data)

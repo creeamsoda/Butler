@@ -35,13 +35,11 @@ if __name__ == "__main__":
     #現在時から、すでに過ぎたものをピックアップする
     nowDate = datetime.date.today()
     availaableList = UpdateSchedule.GetAvailableList(nowDate, animeSchedules)
-    cancellation = RoopCancel.RoopCancel()
 
-    messageQueue = []
+    messageManager = MessageManager.MessageManager(window, saveData)
     for available in availaableList:
-        message = AskWatchedMessage.AskWatchedMessage(MessageManager.CreateAnimeMessage(available))
-        window.ShowMessageOneByOne(message, cancellation)
-        messageQueue.append(message)
+        messageManager.EnqueueMessage(AskWatchedMessage.AskWatchedMessage(available))
+
 
     """
     cancelTest = RoopCancel.RoopCancel()
@@ -53,6 +51,5 @@ if __name__ == "__main__":
     """
 
     window.run()
-    cancellation.cancel()
 
 # 

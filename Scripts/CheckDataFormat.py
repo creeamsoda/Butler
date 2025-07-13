@@ -140,3 +140,38 @@ class CheckDateResult(Enum):
 	YearOutOfRange = 3
 	MonthOutOfRange = 4
 	DayOutOfRange = 5
+
+
+def CheckRegisterCommandResult(commandResultDict):
+	timeResult = CheckTime(commandResultDict["time"])
+	dateResult = CheckDate(commandResultDict["nextDate"])
+	nextEpisodeResult = CheckNumber(commandResultDict["nextEpisode"])
+	ErrorString = ""
+	if timeResult != [CheckTimeResult.Valid]:
+		if CheckTimeResult.ContainsNotNum in timeResult:
+			ErrorString += f"時間{commandResultDict["time"]}に半角数字以外が含まれています。\n"
+		if CheckTimeResult.HourOutOfRange in timeResult:
+			ErrorString += f"時間{commandResultDict["time"]}が0～23の範囲外です。\n"
+		if CheckTimeResult.MinuteOutOfRange in timeResult:
+			ErrorString += f"分{commandResultDict["time"]}が0～59の範囲外です。\n"
+	
+	if dateResult != [CheckDateResult.Valid]:
+		if CheckDateResult.ContainsNotNum in dateResult:
+			ErrorString += f"日付{commandResultDict["nextDate"]}に半角数字以外が含まれています。\n"
+		if CheckDateResult.YearOutOfRange in dateResult:
+			ErrorString += f"年{commandResultDict["nextDate"]}が1900～2100の範囲外です。\n"
+		if CheckDateResult.MonthOutOfRange in dateResult:
+			ErrorString += f"月{commandResultDict["nextDate"]}が1～12の範囲外です。\n"
+		if CheckDateResult.DayOutOfRange in dateResult:
+			ErrorString += f"日{commandResultDict["nextDate"]}が1～31の範囲外、もしくはカレンダーにない日付です。\n"
+
+	if nextEpisodeResult != CheckNumberResult.Valid:
+		if nextEpisodeResult == CheckNumberResult.ContainsNotNum:
+			ErrorString += f"次回エピソード番号{commandResultDict["nextEpisode"]}に半角数字以外が含まれています。\n"
+		elif nextEpisodeResult == CheckNumberResult.LengthOutOfRange:
+			ErrorString += f"次回エピソード番号{commandResultDict["nextEpisode"]}が0以上の整数ではありません。\n"
+
+	if ErrorString == "":
+		return (True, "")
+	else:
+		return (False, ErrorString)
