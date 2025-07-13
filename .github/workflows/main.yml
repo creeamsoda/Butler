@@ -29,9 +29,9 @@ jobs:
           pip install slack_sdk
           pip install pathlib
       - name: lsCommand
-        run: ls ./ -a
+        run: pwd|ls -a
       - name: lsCommandInData
-        run: ls ./Data -a
+        run: ls ././Data -a
           
       - name: Run script
         run: |
