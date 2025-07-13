@@ -1,9 +1,11 @@
 # ワークフロー名
 name: butler
 on:
+  workflow_dispatch:
   schedule:
     # 定期実行する時間・・・①
     - cron: '0 22 * * *'
+    
 jobs:
   build:
     # Ubuntuの最新版環境内で処理を実行することを指定
