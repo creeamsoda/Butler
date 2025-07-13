@@ -33,9 +33,9 @@ jobs:
       - name: lsCommand
         run: ls -a
       - name: lsCommandInData
-        run: |
-          - cd ./
-          - ls -a
+        run: cd ./
+      - name: ls
+        run: ls -a
           
       - name: Run script
         run: |
