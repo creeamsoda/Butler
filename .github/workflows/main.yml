@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.13
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: 3.13
       - name: Install dependencies
@@ -27,4 +27,4 @@ jobs:
       - name: Run script
         run: |
           # 定期実行するファイルを指定。・・・③
-          python Butler_Slack.py ${{secrets.SLACK_BOT_TOKEN}} ${{secrets.CHANNEL_ID}}
+          python ./Scripts/Butler_Slack.py ${{secrets.SLACK_BOT_TOKEN}} ${{secrets.CHANNEL_ID}}
