@@ -19,8 +19,8 @@ class SaveData():
             saveDataFile.close()
             return saveData
 
-        except FileNotFoundError:
-            print("Save data file not found. Please ensure the file exists.")
+        except FileNotFoundError as e:
+            print(f"Save data file not found. Please ensure the file exists.{e}")
             return []
 
         except json.JSONDecodeError:
