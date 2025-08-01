@@ -37,3 +37,10 @@ jobs:
         run: |
           # 定期実行するファイルを指定。・・・③
           python ./Scripts/Butler_SlackReadCommand.py ${{secrets.SLACK_BOT_TOKEN}} ${{secrets.CHANNEL_ID}}
+          # ファイルの更新、push
+          git config user.name "creeamsoda"
+          git config user.email {{secrets.CREEAMSODA_EMAIL}}
+          git add ./Data/SaveData.json
+          git add ./Data/BotData.json
+          git commit -m"データ更新"
+          git push origin main
