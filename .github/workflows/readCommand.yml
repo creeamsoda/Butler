@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # 定期実行する時間・・・①
-    - cron: '* * * * *'
+    - cron: '*/6 * * * *'
     
 jobs:
   build:
