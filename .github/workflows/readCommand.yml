@@ -40,12 +40,12 @@ jobs:
           # ファイルの更新、push
           git config user.name "creeamsoda"
           git config user.email {{secrets.CREEAMSODA_EMAIL}}
+          git add ./Data/SaveData.json
+          git add ./Data/BotData.json
           # 変更がなかったらコミットせずに終了
-          if git diff --quiet; then
+          if git diff --cached --quiet; then
             echo "データに変更なし"
             exit 0
           fi
-          git add ./Data/SaveData.json
-          git add ./Data/BotData.json
           git commit -m"データ更新"
           git push origin main
