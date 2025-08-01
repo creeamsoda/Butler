@@ -18,9 +18,9 @@
         },
         {
             "name": "testTwo",
-            "nextDate": "2025-2-5",
+            "nextDate": "2025-2-12",
             "time": "23:20",
-            "nextEpisode": "10",
+            "nextEpisode": "11",
             "isNextReleased": false,
             "isNextLast": false
         },
@@ -42,25 +42,25 @@
         },
         {
             "name": "TestFive",
-            "nextDate": "2025-7-6",
+            "nextDate": "2025-7-13",
             "time": "15:30",
-            "nextEpisode": "0",
+            "nextEpisode": "1",
             "isNextReleased": false,
             "isNextLast": false
         },
         {
             "name": "Demon Slayer",
-            "nextDate": "2025-7-21",
+            "nextDate": "2025-8-18",
             "time": "23:59",
-            "nextEpisode": "3",
+            "nextEpisode": "7",
             "isNextReleased": false,
             "isNextLast": false
         },
         {
             "name": "アニメ2",
-            "nextDate": "2025-7-18",
+            "nextDate": "2025-8-1",
             "time": "23:59",
-            "nextEpisode": "2",
+            "nextEpisode": "4",
             "isNextReleased": false,
             "isNextLast": false
         }
