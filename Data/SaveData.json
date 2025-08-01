@@ -50,17 +50,17 @@
         },
         {
             "name": "Demon Slayer",
-            "nextDate": "2025-7-14",
+            "nextDate": "2025-7-21",
             "time": "23:59",
-            "nextEpisode": "2",
+            "nextEpisode": "3",
             "isNextReleased": false,
             "isNextLast": false
         },
         {
             "name": "アニメ2",
-            "nextDate": "2025-7-11",
+            "nextDate": "2025-7-18",
             "time": "23:59",
-            "nextEpisode": "1",
+            "nextEpisode": "2",
             "isNextReleased": false,
             "isNextLast": false
         }
