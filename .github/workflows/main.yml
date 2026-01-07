@@ -2,9 +2,9 @@
 name: butler
 on:
   workflow_dispatch:
-  schedule:
+  # schedule:
     # 定期実行する時間・・・①
-    - cron: '0 5 * * *'
+    # - cron: '0 5 * * *'
     
 jobs:
   build:
